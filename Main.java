@@ -15,12 +15,10 @@ public class Main {
         if ((strings.length != 4) || (strings[0].length != 4)) {
             throw new MyArraySizeException("Размер массива неверный");
         }
-        // int[][] ints = new int[4][4];
         int sum = 0;
         for (int i = 0; i < strings.length; i++) {
             for (int j = 0; j < strings[0].length; j++) {
                 try {
-                    // ints[i][j] = Integer.parseInt(strings[i][j]);
                     sum += Integer.parseInt(strings[i][j]);
                 } catch (NumberFormatException e) {
                     System.out.println(
