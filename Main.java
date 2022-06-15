@@ -1,34 +1,22 @@
 public class Main {
-    public static void main(String[] args) {
-        String[][] strings = { { "1", "jdn", "3", "hdhj" }, { "fjhfd", "jgddn", "ddgbjc", "hdhgj" },
-                { "1", "2", "3", "4" }, { "fjd", "5", "5", "5" } };
-        try {
-            int sum = stringsToInts(strings);
-            System.out.println(sum);
-        } catch (MyArraySizeException e) {
-            e.printStackTrace();
-        }
+  public static void main(String[] args) {
+    String[] headers = {"text 1", "text 2"};
+    int[][] data = { {1,2}, {2,3} };
+    AppData appdata = new AppData(headers, data);
+    appdata.writeCSV("file1");
+    appdata.readCSV("file2");
+    String[] headerRead = appdata.getHeader();
+    int[][] dataRead = appdata.getData();
+    for (int i = 0; i < headerRead.length; i++) {
+      System.out.print(headerRead[i] + "; ");
     }
-
-    public static int stringsToInts(String[][] strings) throws MyArraySizeException, MyArrayDataException {
-
-        if ((strings.length != 4) || (strings[0].length != 4)) {
-            throw new MyArraySizeException("Размер массива неверный");
-        }
-        // int[][] ints = new int[4][4];
-        int sum = 0;
-        for (int i = 0; i < strings.length; i++) {
-            for (int j = 0; j < strings[0].length; j++) {
-                try {
-                    // ints[i][j] = Integer.parseInt(strings[i][j]);
-                    sum += Integer.parseInt(strings[i][j]);
-                } catch (NumberFormatException e) {
-                    System.out.println(
-                            "Не удалось выполнить преобразование у элемента в строке " + i + " стобце " + j);
-
-                }
-            }
-        }
-        return sum;
+    System.out.println();
+    for (int i = 0; i < dataRead.length; i++) {
+      for (int j = 0; j < dataRead[0].length; j++) {
+        System.out.print(dataRead[i][j]+ "; ") ;
+      }
+      System.out.println();
     }
+  }
 }
+
